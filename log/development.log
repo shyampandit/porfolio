@@ -3274,3 +3274,417 @@ I, [2016-06-22T17:01:35.886023 #30417]  INFO -- : Processing by Api::V1::Portfol
 I, [2016-06-22T17:01:35.886145 #30417]  INFO -- :   Parameters: {"default"=>{"format"=>:json}}
 D, [2016-06-22T17:01:35.887149 #30417] DEBUG -- :   [1m[35mPortfolio Load (0.4ms)[0m  SELECT "portfolios".* FROM "portfolios"
 I, [2016-06-22T17:01:35.890193 #30417]  INFO -- : Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.4ms)
+D, [2016-06-23T13:33:48.460035 #14001] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (24.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+D, [2016-06-23T13:33:48.535772 #14001] DEBUG -- :   [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+D, [2016-06-23T13:33:48.667164 #14001] DEBUG -- :   [1m[36m (10.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'galleries'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+D, [2016-06-23T13:33:48.672964 #14001] DEBUG -- :   [1m[35m (5.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'gallery_photos'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+D, [2016-06-23T13:33:48.678564 #14001] DEBUG -- :   [1m[36m (4.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'portfolios'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+D, [2016-06-23T13:33:48.682168 #14001] DEBUG -- :   [1m[35m (2.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+D, [2016-06-23T13:34:17.357246 #14052] DEBUG -- :   [1m[36m (103.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+D, [2016-06-23T13:34:17.407401 #14052] DEBUG -- :   [1m[35m (47.0ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+D, [2016-06-23T13:34:17.410182 #14052] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T13:34:17.415631 #14052]  INFO -- : Migrating to DeviseCreateUsers (20160420104337)
+D, [2016-06-23T13:34:17.416820 #14052] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T13:34:17.507816 #14052] DEBUG -- :   [1m[36m (65.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "firstname" character varying, "lastname" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T13:34:17.531467 #14052] DEBUG -- :   [1m[35m (20.7ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+D, [2016-06-23T13:34:17.556623 #14052] DEBUG -- :   [1m[36m (23.1ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+D, [2016-06-23T13:34:17.578740 #14052] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160420104337"]]
+D, [2016-06-23T13:34:17.606583 #14052] DEBUG -- :   [1m[36m (27.4ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T13:34:17.606731 #14052]  INFO -- : Migrating to Addcolumnto (20160420114818)
+D, [2016-06-23T13:34:17.607392 #14052] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T13:34:17.608156 #14052] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "authentication_token" character varying[0m
+D, [2016-06-23T13:34:17.609927 #14052] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160420114818"]]
+D, [2016-06-23T13:34:17.620310 #14052] DEBUG -- :   [1m[36m (10.1ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T13:34:17.620456 #14052]  INFO -- : Migrating to CreateGalleries (20160502070432)
+D, [2016-06-23T13:34:17.621230 #14052] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T13:34:17.677241 #14052] DEBUG -- :   [1m[36m (55.3ms)[0m  [1mCREATE TABLE "galleries" ("id" serial primary key, "name" character varying, "description" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T13:34:17.679413 #14052] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160502070432"]]
+D, [2016-06-23T13:34:17.690233 #14052] DEBUG -- :   [1m[36m (10.5ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T13:34:17.690362 #14052]  INFO -- : Migrating to AddAttachmentAvatarToGalleries (20160502072758)
+D, [2016-06-23T13:34:17.691476 #14052] DEBUG -- :   [1m[35m (0.5ms)[0m  BEGIN
+D, [2016-06-23T13:34:17.693244 #14052] DEBUG -- :   [1m[36m (0.7ms)[0m  [1mALTER TABLE "galleries" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T13:34:17.693992 #14052] DEBUG -- :   [1m[35m (0.4ms)[0m  ALTER TABLE "galleries" ADD "avatar_content_type" character varying
+D, [2016-06-23T13:34:17.694385 #14052] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mALTER TABLE "galleries" ADD "avatar_file_size" integer[0m
+D, [2016-06-23T13:34:17.694732 #14052] DEBUG -- :   [1m[35m (0.2ms)[0m  ALTER TABLE "galleries" ADD "avatar_updated_at" timestamp
+D, [2016-06-23T13:34:17.696449 #14052] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160502072758"]]
+D, [2016-06-23T13:34:17.710463 #14052] DEBUG -- :   [1m[35m (13.7ms)[0m  COMMIT
+I, [2016-06-23T13:34:17.710670 #14052]  INFO -- : Migrating to Addcolumntogalleries (20160509102149)
+D, [2016-06-23T13:34:17.711636 #14052] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-06-23T13:34:17.712684 #14052] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "galleries" ADD "user_id" integer
+D, [2016-06-23T13:34:17.715594 #14052] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160509102149"]]
+D, [2016-06-23T13:34:17.731972 #14052] DEBUG -- :   [1m[35m (16.0ms)[0m  COMMIT
+I, [2016-06-23T13:34:17.732106 #14052]  INFO -- : Migrating to AddGalleryTogalleryphotos (20160509121248)
+D, [2016-06-23T13:34:17.732625 #14052] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+D, [2016-06-23T13:34:17.733379 #14052] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "galleryphotos" ADD "galleries_id" integer
+D, [2016-06-23T13:34:17.733614 #14052] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+D, [2016-06-23T14:33:11.347871 #15889] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:33:11.352674 #15889]  INFO -- : Migrating to AddGalleryTogalleryphotos (20160509121248)
+D, [2016-06-23T14:33:11.353315 #15889] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T14:33:11.354235 #15889] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mALTER TABLE "galleryphotos" ADD "galleries_id" integer[0m
+D, [2016-06-23T14:33:11.354552 #15889] DEBUG -- :   [1m[35m (0.1ms)[0m  ROLLBACK
+D, [2016-06-23T14:47:00.734190 #17886] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:47:00.740107 #17886]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T14:47:00.740929 #17886] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T14:47:00.742105 #17886] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T14:47:00.742487 #17886] DEBUG -- :   [1m[35m (0.2ms)[0m  ROLLBACK
+D, [2016-06-23T14:52:48.998251 #19322] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:52:49.002707 #19322]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T14:52:49.003318 #19322] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T14:52:49.004159 #19322] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T14:52:49.004429 #19322] DEBUG -- :   [1m[35m (0.1ms)[0m  ROLLBACK
+D, [2016-06-23T14:53:39.928671 #19554] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:53:39.933374 #19554]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T14:53:39.933994 #19554] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T14:53:39.934960 #19554] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T14:53:39.935332 #19554] DEBUG -- :   [1m[35m (0.2ms)[0m  ROLLBACK
+D, [2016-06-23T14:54:15.901281 #19780] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:54:15.907646 #19780]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T14:54:15.908589 #19780] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T14:54:15.909839 #19780] DEBUG -- :   [1m[36m (0.6ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T14:54:15.910367 #19780] DEBUG -- :   [1m[35m (0.2ms)[0m  ROLLBACK
+D, [2016-06-23T14:57:00.370611 #19985] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:57:00.375331 #19985]  INFO -- : Migrating to CreateGalleryPhotos (20160509123031)
+D, [2016-06-23T14:57:00.375991 #19985] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T14:57:00.462145 #19985] DEBUG -- :   [1m[36m (85.1ms)[0m  [1mCREATE TABLE "gallery_photos" ("id" serial primary key, "name" character varying, "description" character varying, "gallery_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T14:57:00.467950 #19985] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160509123031"]]
+D, [2016-06-23T14:57:00.499766 #19985] DEBUG -- :   [1m[36m (31.5ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T14:57:00.499940 #19985]  INFO -- : Migrating to CreatePortfolios (20160520055039)
+D, [2016-06-23T14:57:00.500734 #19985] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T14:57:00.565723 #19985] DEBUG -- :   [1m[36m (64.2ms)[0m  [1mCREATE TABLE "portfolios" ("id" serial primary key, "name" character varying, "description" character varying, "projectarea" character varying, "start_date" date, "end_date" date, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T14:57:00.571724 #19985] DEBUG -- :   [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160520055039"]]
+D, [2016-06-23T14:57:00.585718 #19985] DEBUG -- :   [1m[36m (13.6ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T14:57:00.585877 #19985]  INFO -- : Migrating to Addcolumntoportfolio (20160520065755)
+D, [2016-06-23T14:57:00.586582 #19985] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T14:57:00.588149 #19985] DEBUG -- :   [1m[36m (0.7ms)[0m  [1mALTER TABLE "portfolios" ADD "user_id" integer[0m
+D, [2016-06-23T14:57:00.589753 #19985] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160520065755"]]
+D, [2016-06-23T14:57:00.598855 #19985] DEBUG -- :   [1m[36m (8.8ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T14:57:00.598997 #19985]  INFO -- : Migrating to AddAttachmentAvatarToPortfolios (20160520070431)
+D, [2016-06-23T14:57:00.599576 #19985] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-06-23T14:57:00.600322 #19985] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mALTER TABLE "portfolios" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T14:57:00.600735 #19985] DEBUG -- :   [1m[35m (0.2ms)[0m  ALTER TABLE "portfolios" ADD "avatar_content_type" character varying
+D, [2016-06-23T14:57:00.601148 #19985] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mALTER TABLE "portfolios" ADD "avatar_file_size" integer[0m
+D, [2016-06-23T14:57:00.601880 #19985] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "portfolios" ADD "avatar_updated_at" timestamp
+D, [2016-06-23T14:57:00.603841 #19985] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160520070431"]]
+D, [2016-06-23T14:57:00.619028 #19985] DEBUG -- :   [1m[35m (14.4ms)[0m  COMMIT
+I, [2016-06-23T14:57:00.619236 #19985]  INFO -- : Migrating to AddGalleryTogalleryphotos (20160609121248)
+D, [2016-06-23T14:57:00.619905 #19985] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-06-23T14:57:00.621412 #19985] DEBUG -- :   [1m[35m (0.8ms)[0m  ALTER TABLE "galleryphotos" ADD "galleries_id" integer
+D, [2016-06-23T14:57:00.621845 #19985] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+D, [2016-06-23T14:57:37.921596 #20018] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:57:37.927736 #20018]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T14:57:37.928540 #20018] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T14:57:37.929633 #20018] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T14:57:37.930090 #20018] DEBUG -- :   [1m[35m (0.2ms)[0m  ROLLBACK
+D, [2016-06-23T14:58:21.097424 #20362] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T14:58:21.103724 #20362]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T14:58:21.104654 #20362] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T14:58:21.105866 #20362] DEBUG -- :   [1m[36m (0.6ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T14:58:21.106367 #20362] DEBUG -- :   [1m[35m (0.2ms)[0m  ROLLBACK
+D, [2016-06-23T15:00:14.801178 #20961] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T15:00:14.805808 #20961]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T15:00:14.806425 #20961] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T15:00:14.807430 #20961] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T15:00:14.807793 #20961] DEBUG -- :   [1m[35m (0.2ms)[0m  ROLLBACK
+D, [2016-06-23T15:01:12.162099 #21116] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T15:01:12.166006 #21116]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T15:01:12.166628 #21116] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T15:01:12.167411 #21116] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mALTER TABLE "galleryphotos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T15:01:12.167695 #21116] DEBUG -- :   [1m[35m (0.1ms)[0m  ROLLBACK
+D, [2016-06-23T15:01:58.182268 #21360] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T15:01:58.187243 #21360]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T15:01:58.187904 #21360] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T15:01:58.189042 #21360] DEBUG -- :   [1m[36m (0.7ms)[0m  [1mALTER TABLE "gallery_photos" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T15:01:58.189556 #21360] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "gallery_photos" ADD "avatar_content_type" character varying
+D, [2016-06-23T15:01:58.189999 #21360] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mALTER TABLE "gallery_photos" ADD "avatar_file_size" integer[0m
+D, [2016-06-23T15:01:58.190444 #21360] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "gallery_photos" ADD "avatar_updated_at" timestamp
+D, [2016-06-23T15:01:58.197726 #21360] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160509122230"]]
+D, [2016-06-23T15:01:58.214885 #21360] DEBUG -- :   [1m[35m (16.8ms)[0m  COMMIT
+I, [2016-06-23T15:01:58.215037 #21360]  INFO -- : Migrating to AddAttachmentAvatarToGalleryPhotos (20160509123532)
+D, [2016-06-23T15:01:58.216179 #21360] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+D, [2016-06-23T15:01:58.218314 #21360] DEBUG -- :   [1m[35m (1.0ms)[0m  ALTER TABLE "gallery_photos" ADD "avatar_file_name" character varying
+D, [2016-06-23T15:01:58.218806 #21360] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+D, [2016-06-23T15:02:26.061364 #21380] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+D, [2016-06-23T15:02:26.073406 #21380] DEBUG -- :   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+D, [2016-06-23T15:02:26.093360 #21380] DEBUG -- :   [1m[36m (2.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'galleries'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+D, [2016-06-23T15:02:26.096044 #21380] DEBUG -- :   [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'gallery_photos'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+D, [2016-06-23T15:02:26.098743 #21380] DEBUG -- :   [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'portfolios'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+D, [2016-06-23T15:02:26.101432 #21380] DEBUG -- :   [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+D, [2016-06-23T15:10:18.805715 #21604] DEBUG -- : 
+D, [2016-06-23T15:10:18.806007 #21604] DEBUG -- : 
+I, [2016-06-23T15:10:18.806516 #21604]  INFO -- : Started POST "/api/v1/user/register" for 127.0.0.1 at 2016-06-23 15:10:18 +0530
+D, [2016-06-23T15:10:18.864033 #21604] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T15:10:19.047257 #21604]  INFO -- : Processing by Api::V1::UsersController#register as */*
+I, [2016-06-23T15:10:19.047379 #21604]  INFO -- :   Parameters: {"username"=>"testsharma", "email"=>"testnew@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "firstname"=>"shyam", "lastname"=>"sharma", "default"=>{"format"=>:json}}
+D, [2016-06-23T15:10:19.237618 #21604] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T15:10:19.288681 #21604] DEBUG -- :   [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'testnew@gmail.com' LIMIT 1[0m
+D, [2016-06-23T15:10:19.314986 #21604] DEBUG -- :   [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."authentication_token" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["authentication_token", "EGeUJsEUWEAhycXcLcEk"]]
+D, [2016-06-23T15:10:19.320349 #21604] DEBUG -- :   [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("email", "firstname", "lastname", "encrypted_password", "created_at", "updated_at", "authentication_token") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "testnew@gmail.com"], ["firstname", "shyam"], ["lastname", "sharma"], ["encrypted_password", "$2a$11$.gL9peX3DzakifJi3NWPSeLxVi69KYvQk/Syf1NthsJ9Mpi1DQfKW"], ["created_at", "2016-06-23 09:40:19.288925"], ["updated_at", "2016-06-23 09:40:19.288925"], ["authentication_token", "EGeUJsEUWEAhycXcLcEk"]]
+D, [2016-06-23T15:10:19.343548 #21604] DEBUG -- :   [1m[35m (22.1ms)[0m  COMMIT
+I, [2016-06-23T15:10:19.345327 #21604]  INFO -- : Completed 201 Created in 298ms (Views: 0.4ms | ActiveRecord: 28.9ms)
+D, [2016-06-23T15:16:17.558965 #21604] DEBUG -- : 
+D, [2016-06-23T15:16:17.559116 #21604] DEBUG -- : 
+I, [2016-06-23T15:16:17.559347 #21604]  INFO -- : Started POST "/api/v1/portfolio/addproject" for 127.0.0.1 at 2016-06-23 15:16:17 +0530
+I, [2016-06-23T15:16:17.571153 #21604]  INFO -- : Processing by Api::V1::PortfolioController#addproject as */*
+I, [2016-06-23T15:16:17.571488 #21604]  INFO -- :   Parameters: {"name"=>"first project may", "desc"=>"testing project", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x000000062a7d20 @tempfile=#<Tempfile:/tmp/RackMultipart20160623-21604-8fe4ue.jpg>, @original_filename="banner3.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"avatar\"; filename=\"banner3.jpg\"\r\nContent-Type: image/jpeg\r\n">, "userid"=>"9", "startdate"=>"2016-05-23", "enddate"=>"2016-06-03", "token"=>"8bFfXUhEvFxGzZJFX9eo", "area"=>"development", "default"=>{"format"=>:json}}
+D, [2016-06-23T15:16:17.579394 #21604] DEBUG -- :   [1m[36mPortfolio Load (1.0ms)[0m  [1mSELECT "portfolios".* FROM "portfolios" WHERE (name = 'first project may')[0m
+I, [2016-06-23T15:16:17.604552 #21604]  INFO -- : Command :: file -b --mime '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-r8ups.jpg'
+I, [2016-06-23T15:16:17.642801 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:16:17.817515 #21604]  INFO -- : Command :: identify -format %m '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]'
+I, [2016-06-23T15:16:17.829926 #21604]  INFO -- : Command :: convert '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]' -auto-orient -resize "100x100" '/tmp/c6173aad5b38b003e26a203fab533f1720160623-21604-1326oem'
+I, [2016-06-23T15:16:17.881930 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:16:17.897136 #21604]  INFO -- : Command :: identify -format %m '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]'
+I, [2016-06-23T15:16:17.913880 #21604]  INFO -- : Command :: convert '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]' -auto-orient -resize "500x320" '/tmp/c6173aad5b38b003e26a203fab533f1720160623-21604-11h8rdk'
+I, [2016-06-23T15:16:17.960462 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:16:17.973901 #21604]  INFO -- : Command :: identify -format %m '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]'
+I, [2016-06-23T15:16:17.991440 #21604]  INFO -- : Command :: convert '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1pflbro.jpg[0]' -auto-orient -resize "1440x700" '/tmp/c6173aad5b38b003e26a203fab533f1720160623-21604-1luipxu'
+D, [2016-06-23T15:16:18.063295 #21604] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+I, [2016-06-23T15:16:18.064599 #21604]  INFO -- : Command :: file -b --mime '/tmp/8c5b413b64b97d1f5c875881bd4c6a2f20160623-21604-1wghtiv.jpg'
+D, [2016-06-23T15:16:18.072844 #21604] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "portfolios" ("name", "description", "avatar_file_name", "avatar_content_type", "avatar_file_size", "avatar_updated_at", "projectarea", "user_id", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["name", "first project may"], ["description", "testing project"], ["avatar_file_name", "banner3.jpg"], ["avatar_content_type", "image/jpeg"], ["avatar_file_size", 37010], ["avatar_updated_at", "2016-06-23 09:46:17.602566"], ["projectarea", "development"], ["user_id", 9], ["start_date", "2016-05-23"], ["end_date", "2016-06-03"], ["created_at", "2016-06-23 09:46:18.071029"], ["updated_at", "2016-06-23 09:46:18.071029"]]
+D, [2016-06-23T15:16:18.106934 #21604] DEBUG -- :   [1m[35m (27.7ms)[0m  COMMIT
+I, [2016-06-23T15:16:18.109429 #21604]  INFO -- : Completed 201 Created in 538ms (Views: 0.8ms | ActiveRecord: 31.1ms)
+D, [2016-06-23T15:16:53.696662 #21604] DEBUG -- : 
+D, [2016-06-23T15:16:53.697009 #21604] DEBUG -- : 
+I, [2016-06-23T15:16:53.697528 #21604]  INFO -- : Started POST "/api/v1/gallery/addgallery" for 127.0.0.1 at 2016-06-23 15:16:53 +0530
+I, [2016-06-23T15:16:53.717464 #21604]  INFO -- : Processing by Api::V1::GalleryController#addgallery as */*
+I, [2016-06-23T15:16:53.717807 #21604]  INFO -- :   Parameters: {"galleryname"=>"kangravalley", "gallerydesc"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x00000005c76b18 @tempfile=#<Tempfile:/tmp/RackMultipart20160623-21604-12wgklo.jpg>, @original_filename="banner1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"avatar\"; filename=\"banner1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "userid"=>"9", "token"=>"7TMuyNtxqxAiLwJTE-xk", "default"=>{"format"=>:json}}
+I, [2016-06-23T15:16:53.762961 #21604]  INFO -- : Command :: file -b --mime '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1y8v3ao.jpg'
+I, [2016-06-23T15:16:53.772742 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:16:53.791743 #21604]  INFO -- : Command :: identify -format %m '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]'
+I, [2016-06-23T15:16:53.803288 #21604]  INFO -- : Command :: convert '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]' -auto-orient -resize "100x100" '/tmp/d5241878be88ef8591a20f0c4e54d84020160623-21604-sv5pvs'
+I, [2016-06-23T15:16:53.824944 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:16:53.838291 #21604]  INFO -- : Command :: identify -format %m '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]'
+I, [2016-06-23T15:16:53.850281 #21604]  INFO -- : Command :: convert '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]' -auto-orient -resize "500x320" '/tmp/d5241878be88ef8591a20f0c4e54d84020160623-21604-qz38ct'
+I, [2016-06-23T15:16:53.890875 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:16:53.901593 #21604]  INFO -- : Command :: identify -format %m '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]'
+I, [2016-06-23T15:16:53.912200 #21604]  INFO -- : Command :: convert '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1w8ozkj.jpg[0]' -auto-orient -resize "1440x700" '/tmp/d5241878be88ef8591a20f0c4e54d84020160623-21604-uu0eke'
+D, [2016-06-23T15:16:53.976464 #21604] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+I, [2016-06-23T15:16:53.977324 #21604]  INFO -- : Command :: file -b --mime '/tmp/7c9a778d594c025dc99213019cdf6bcf20160623-21604-1skyzku.jpg'
+D, [2016-06-23T15:16:53.984876 #21604] DEBUG -- :   [1m[35mSQL (0.4ms)[0m  INSERT INTO "galleries" ("name", "description", "avatar_file_name", "avatar_content_type", "avatar_file_size", "avatar_updated_at", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "kangravalley"], ["description", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae."], ["avatar_file_name", "banner1.jpg"], ["avatar_content_type", "image/jpeg"], ["avatar_file_size", 13425], ["avatar_updated_at", "2016-06-23 09:46:53.762157"], ["user_id", 9], ["created_at", "2016-06-23 09:46:53.982933"], ["updated_at", "2016-06-23 09:46:53.982933"]]
+D, [2016-06-23T15:16:54.017995 #21604] DEBUG -- :   [1m[36m (27.7ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T15:16:54.018961 #21604]  INFO -- : Completed 201 Created in 301ms (Views: 0.5ms | ActiveRecord: 30.7ms)
+D, [2016-06-23T15:17:26.123934 #21604] DEBUG -- : 
+D, [2016-06-23T15:17:26.124369 #21604] DEBUG -- : 
+I, [2016-06-23T15:17:26.124927 #21604]  INFO -- : Started POST "/api/v1/gallery/addphotos" for 127.0.0.1 at 2016-06-23 15:17:26 +0530
+I, [2016-06-23T15:17:26.132914 #21604]  INFO -- : Processing by Api::V1::GalleryController#addphotos as */*
+I, [2016-06-23T15:17:26.133153 #21604]  INFO -- :   Parameters: {"name"=>"test", "description"=>"testing", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x000000041f7a30 @tempfile=#<Tempfile:/tmp/RackMultipart20160623-21604-fdojui.jpg>, @original_filename="@banner5.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"avatar\"; filename=\"@banner5.jpg\"\r\nContent-Type: image/jpeg\r\n">, "gallery_id"=>"1", "default"=>{"format"=>:json}}
+I, [2016-06-23T15:17:26.168171 #21604]  INFO -- : Command :: file -b --mime '/tmp/426616b6ea2dde4e2d78e6479e85ea2520160623-21604-1q7yevz.jpg'
+I, [2016-06-23T15:17:26.180434 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:17:26.199554 #21604]  INFO -- : Command :: identify -format %m '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]'
+I, [2016-06-23T15:17:26.235632 #21604]  INFO -- : Command :: convert '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]' -auto-orient -resize "100x100" '/tmp/3cf3d4c535f3ceed56dddd8b37fa04d420160623-21604-1upsukf'
+I, [2016-06-23T15:17:26.266469 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:17:26.290955 #21604]  INFO -- : Command :: identify -format %m '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]'
+I, [2016-06-23T15:17:26.310068 #21604]  INFO -- : Command :: convert '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]' -auto-orient -resize "500x320" '/tmp/3cf3d4c535f3ceed56dddd8b37fa04d420160623-21604-1hbzzfu'
+I, [2016-06-23T15:17:26.362112 #21604]  INFO -- : Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]' 2>/dev/null
+I, [2016-06-23T15:17:26.376293 #21604]  INFO -- : Command :: identify -format %m '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]'
+I, [2016-06-23T15:17:26.389857 #21604]  INFO -- : Command :: convert '/tmp/f832ea7c83fdd51102ae3c2715c17db220160623-21604-f21jro.jpg[0]' -auto-orient -resize "1440x700" '/tmp/3cf3d4c535f3ceed56dddd8b37fa04d420160623-21604-jz4h2g'
+D, [2016-06-23T15:17:26.440051 #21604] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+I, [2016-06-23T15:17:26.441076 #21604]  INFO -- : Command :: file -b --mime '/tmp/426616b6ea2dde4e2d78e6479e85ea2520160623-21604-1etj2dc.jpg'
+D, [2016-06-23T15:17:26.450196 #21604] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "gallery_photos" ("name", "description", "avatar_file_name", "avatar_content_type", "avatar_file_size", "avatar_updated_at", "gallery_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "test"], ["description", "testing"], ["avatar_file_name", "_banner5.jpg"], ["avatar_content_type", "image/jpeg"], ["avatar_file_size", 95361], ["avatar_updated_at", "2016-06-23 09:47:26.160960"], ["gallery_id", 1], ["created_at", "2016-06-23 09:47:26.448440"], ["updated_at", "2016-06-23 09:47:26.448440"]]
+D, [2016-06-23T15:17:26.739608 #21604] DEBUG -- :   [1m[35m (282.6ms)[0m  COMMIT
+I, [2016-06-23T15:17:26.741174 #21604]  INFO -- : Completed 201 Created in 608ms (Views: 0.7ms | ActiveRecord: 284.8ms)
+D, [2016-06-23T15:18:09.049042 #21996] DEBUG -- :   [1m[36m (73.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+D, [2016-06-23T15:18:09.100425 #21996] DEBUG -- :   [1m[35m (48.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+D, [2016-06-23T15:18:09.103198 #21996] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T15:18:09.107966 #21996]  INFO -- : Migrating to DeviseCreateUsers (20160420104337)
+D, [2016-06-23T15:18:09.109021 #21996] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T15:18:09.167483 #21996] DEBUG -- :   [1m[36m (52.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "firstname" character varying, "lastname" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T15:18:09.203316 #21996] DEBUG -- :   [1m[35m (31.4ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+D, [2016-06-23T15:18:09.235419 #21996] DEBUG -- :   [1m[36m (28.6ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+D, [2016-06-23T15:18:09.241342 #21996] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160420104337"]]
+D, [2016-06-23T15:18:09.257058 #21996] DEBUG -- :   [1m[36m (15.3ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T15:18:09.257217 #21996]  INFO -- : Migrating to Addcolumnto (20160420114818)
+D, [2016-06-23T15:18:09.258021 #21996] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T15:18:09.259021 #21996] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "authentication_token" character varying[0m
+D, [2016-06-23T15:18:09.262286 #21996] DEBUG -- :   [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160420114818"]]
+D, [2016-06-23T15:18:09.277559 #21996] DEBUG -- :   [1m[36m (14.9ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T15:18:09.277695 #21996]  INFO -- : Migrating to CreateGalleries (20160502070432)
+D, [2016-06-23T15:18:09.278246 #21996] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-06-23T15:18:09.342756 #21996] DEBUG -- :   [1m[36m (64.0ms)[0m  [1mCREATE TABLE "galleries" ("id" serial primary key, "name" character varying, "description" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T15:18:09.344684 #21996] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160502070432"]]
+D, [2016-06-23T15:18:09.354745 #21996] DEBUG -- :   [1m[36m (9.8ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T15:18:09.354858 #21996]  INFO -- : Migrating to AddAttachmentAvatarToGalleries (20160502072758)
+D, [2016-06-23T15:18:09.355476 #21996] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T15:18:09.356669 #21996] DEBUG -- :   [1m[36m (0.6ms)[0m  [1mALTER TABLE "galleries" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T15:18:09.357745 #21996] DEBUG -- :   [1m[35m (0.6ms)[0m  ALTER TABLE "galleries" ADD "avatar_content_type" character varying
+D, [2016-06-23T15:18:09.358630 #21996] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mALTER TABLE "galleries" ADD "avatar_file_size" integer[0m
+D, [2016-06-23T15:18:09.359054 #21996] DEBUG -- :   [1m[35m (0.2ms)[0m  ALTER TABLE "galleries" ADD "avatar_updated_at" timestamp
+D, [2016-06-23T15:18:09.360719 #21996] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160502072758"]]
+D, [2016-06-23T15:18:09.376581 #21996] DEBUG -- :   [1m[35m (15.6ms)[0m  COMMIT
+I, [2016-06-23T15:18:09.376766 #21996]  INFO -- : Migrating to Addcolumntogalleries (20160509102149)
+D, [2016-06-23T15:18:09.377386 #21996] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-06-23T15:18:09.378195 #21996] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "galleries" ADD "user_id" integer
+D, [2016-06-23T15:18:09.380167 #21996] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160509102149"]]
+D, [2016-06-23T15:18:09.388770 #21996] DEBUG -- :   [1m[35m (8.3ms)[0m  COMMIT
+I, [2016-06-23T15:18:09.388902 #21996]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160509122230)
+D, [2016-06-23T15:18:09.389488 #21996] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-06-23T15:18:09.390283 #21996] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "gallery_photos" ADD "avatar_file_name" character varying
+D, [2016-06-23T15:18:09.390534 #21996] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+D, [2016-06-23T15:20:22.819870 #22288] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2016-06-23T15:20:22.825749 #22288]  INFO -- : Migrating to CreateGalleryPhotos (20160509123031)
+D, [2016-06-23T15:20:22.826622 #22288] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T15:20:22.921866 #22288] DEBUG -- :   [1m[36m (93.6ms)[0m  [1mCREATE TABLE "gallery_photos" ("id" serial primary key, "name" character varying, "description" character varying, "gallery_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T15:20:22.927345 #22288] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160509123031"]]
+D, [2016-06-23T15:20:22.941805 #22288] DEBUG -- :   [1m[36m (14.2ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T15:20:22.941943 #22288]  INFO -- : Migrating to CreatePortfolios (20160520055039)
+D, [2016-06-23T15:20:22.942587 #22288] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T15:20:22.992046 #22288] DEBUG -- :   [1m[36m (48.9ms)[0m  [1mCREATE TABLE "portfolios" ("id" serial primary key, "name" character varying, "description" character varying, "projectarea" character varying, "start_date" date, "end_date" date, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+D, [2016-06-23T15:20:22.994200 #22288] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160520055039"]]
+D, [2016-06-23T15:20:23.003779 #22288] DEBUG -- :   [1m[36m (9.2ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T15:20:23.003956 #22288]  INFO -- : Migrating to Addcolumntoportfolio (20160520065755)
+D, [2016-06-23T15:20:23.004840 #22288] DEBUG -- :   [1m[35m (0.3ms)[0m  BEGIN
+D, [2016-06-23T15:20:23.005836 #22288] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mALTER TABLE "portfolios" ADD "user_id" integer[0m
+D, [2016-06-23T15:20:23.008037 #22288] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160520065755"]]
+D, [2016-06-23T15:20:23.025146 #22288] DEBUG -- :   [1m[36m (16.6ms)[0m  [1mCOMMIT[0m
+I, [2016-06-23T15:20:23.025271 #22288]  INFO -- : Migrating to AddAttachmentAvatarToPortfolios (20160520070431)
+D, [2016-06-23T15:20:23.025893 #22288] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-06-23T15:20:23.027544 #22288] DEBUG -- :   [1m[36m (0.8ms)[0m  [1mALTER TABLE "portfolios" ADD "avatar_file_name" character varying[0m
+D, [2016-06-23T15:20:23.028111 #22288] DEBUG -- :   [1m[35m (0.3ms)[0m  ALTER TABLE "portfolios" ADD "avatar_content_type" character varying
+D, [2016-06-23T15:20:23.028556 #22288] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mALTER TABLE "portfolios" ADD "avatar_file_size" integer[0m
+D, [2016-06-23T15:20:23.028999 #22288] DEBUG -- :   [1m[35m (0.2ms)[0m  ALTER TABLE "portfolios" ADD "avatar_updated_at" timestamp
+D, [2016-06-23T15:20:23.030955 #22288] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160520070431"]]
+D, [2016-06-23T15:20:23.045330 #22288] DEBUG -- :   [1m[35m (14.0ms)[0m  COMMIT
+I, [2016-06-23T15:20:23.045465 #22288]  INFO -- : Migrating to AddAttachmentAvatarToGalleryphotos (20160609122230)
+D, [2016-06-23T15:20:23.046065 #22288] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-06-23T15:20:23.046896 #22288] DEBUG -- :   [1m[35m (0.4ms)[0m  ALTER TABLE "gallery_photos" ADD "avatar_file_name" character varying
+D, [2016-06-23T15:20:23.047327 #22288] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mALTER TABLE "gallery_photos" ADD "avatar_content_type" character varying[0m
+D, [2016-06-23T15:20:23.047726 #22288] DEBUG -- :   [1m[35m (0.2ms)[0m  ALTER TABLE "gallery_photos" ADD "avatar_file_size" integer
+D, [2016-06-23T15:20:23.048099 #22288] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mALTER TABLE "gallery_photos" ADD "avatar_updated_at" timestamp[0m
+D, [2016-06-23T15:20:23.049829 #22288] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160609122230"]]
+D, [2016-06-23T15:20:23.067744 #22288] DEBUG -- :   [1m[36m (17.6ms)[0m  [1mCOMMIT[0m
+D, [2016-06-23T15:20:23.073255 #22288] DEBUG -- :   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+D, [2016-06-23T15:20:23.092596 #22288] DEBUG -- :   [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'galleries'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+D, [2016-06-23T15:20:23.094848 #22288] DEBUG -- :   [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'gallery_photos'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+D, [2016-06-23T15:20:23.097428 #22288] DEBUG -- :   [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'portfolios'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+D, [2016-06-23T15:20:23.101062 #22288] DEBUG -- :   [1m[35m (3.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
