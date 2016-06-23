@@ -16,7 +16,6 @@ class Api::V1::PortfolioController < Api::V1::BaseController
                else
                     render :json => { success: true, message: "No project", data:[] }, :status => 200 
                end  
-
              rescue
         	       # Error Response
 		              render :json => { success: false, 
